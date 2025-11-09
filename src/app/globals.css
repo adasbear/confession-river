@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-fira-code);
+  --color-gold: #FFD700;
+  --color-blood-red: #DC2626;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-fira-code), monospace;
+}
+
+/* Custom utility classes for gold and blood-red */
+.text-gold {
+  color: #FFD700;
+}
+
+.border-gold {
+  border-color: #FFD700;
+}
+
+.bg-blood-red {
+  background-color: #8B0000;
+}
+
+.text-blood-red {
+  color: #DC2626;
+}

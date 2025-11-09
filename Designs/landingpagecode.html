@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Confession River</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ec1313",
+            "background-light": "#f8f6f6",
+            "background-dark": "#221010",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk"],
+            "code": ["Fira Code", "monospace"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+<style>
+    .font-code {
+      font-family: 'Fira Code', monospace;
+    }
+    .text-gold {
+      color: #FFD700;
+    }
+    .border-gold {
+      border-color: #FFD700;
+    }
+    .bg-blood-red {
+      background-color: #8B0000;
+    }
+    .text-blood-red {
+      color: #DC2626;}
+  </style>
+</head>
+<body class="bg-black">
+<div class="relative flex h-screen w-full flex-col font-code" style='font-family: "Fira Code", monospace;'>
+<main class="flex h-full grow flex-col items-center justify-center p-4">
+<div class="flex w-full max-w-sm flex-col items-center justify-center rounded-lg border border-gold bg-black p-8 shadow-lg shadow-yellow-500/10">
+<h1 class="text-3xl font-bold text-gold" style="text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);">Confession River</h1>
+<p class="mt-2 text-center text-sm font-medium text-red-500" style="text-shadow: 0 0 4px rgba(220, 38, 38, 0.6);">Drop your truth into the night.</p>
+<div class="mt-8 w-full">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 border border-gold bg-blood-red px-5 text-base font-bold tracking-wider text-white hover:bg-red-900 transition-colors duration-300">
+<span class="truncate">Join »</span>
+</button>
+</div>
+</div>
+</main>
+<footer class="w-full pb-4">
+<p class="text-center text-sm font-normal text-gold opacity-60">© 2025</p>
+</footer>
+</div>
+</body></html>

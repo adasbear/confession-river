@@ -1,0 +1,37 @@
+# Confession River – CursorRules (v1)
+# -------------------------------------------------
+# STACK
+- Next.js 15 App Router + TypeScript + Tailwind CSS
+- Drizzle ORM + Turso (SQLite)
+- No Prisma, no PostgreSQL, no Mongoose
+# CODE RULES
+- Use kebab-case for file names: `confession-card.tsx`
+- Use named exports for React components
+- Prefer server components unless interactivity is required
+- Interactivity = "use client" at top of file
+- Never store secrets in .env.local, use Vercel CLI instead
+- Always wrap external fetches in try/catch and return typed error objects
+- Use nanoid(12) for any new ID
+- Use clsx or native template-literals for conditional classes; no clsx imports if < 2 conditions
+- Keep client components under /components/client folder
+# DB RULES
+- Every write must use Drizzle transactions if > 1 table affected
+- Index every foreign-key column immediately
+- Never expose raw database errors to the client; return {ok:false, message:string}
+# DESIGN RULES
+- Colour palette: black #000000, blood-red #DC2626, gold #FFD700
+- Font: Fira Code (monospace) everywhere
+- No dark mode toggle; always dark
+- Card border: 1 px gold, rounded-lg
+- No character limits in confession body; no “read more” truncation
+# SECURITY / PRIVACY
+- Ghost-user only; no email, no OAuth, no JWT beyond cookie
+- Rate-limit: 5 confessions / 24 h per ghost cookie
+- Never log or store IP addresses
+# FILE TREE
+/src
+  /app          – Next.js App Router pages + API routes
+  /components   – React components (server by default)
+  /lib          – Drizzle schema, db client, ghost helper
+  /styles       – Global CSS tweaks (if any)
+# END

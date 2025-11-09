@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Confession</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#f4d125",
+            "background-light": "#f8f8f5",
+            "background-dark": "#221f10",
+            "confession-gold": "#C5B358",
+            "confession-red": "#DC143C",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk"],
+            "mono": ["Fira Code", "monospace"],
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="font-mono bg-background-light dark:bg-background-dark">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Dimmed Background Content -->
+<div class="absolute inset-0 z-0 bg-background-light dark:bg-background-dark">
+<!-- This is a placeholder for the main app feed -->
+<div class="p-8 space-y-4">
+<div class="w-full h-24 rounded-lg bg-gray-200 dark:bg-gray-800/50 animate-pulse"></div>
+<div class="w-full h-48 rounded-lg bg-gray-200 dark:bg-gray-800/50 animate-pulse"></div>
+<div class="w-full h-32 rounded-lg bg-gray-200 dark:bg-gray-800/50 animate-pulse"></div>
+</div>
+</div>
+<!-- Backdrop Overlay -->
+<div class="absolute inset-0 z-10 bg-black/80"></div>
+<!-- Bottom Sheet Modal -->
+<div class="absolute inset-x-0 bottom-0 z-20 flex justify-center">
+<div class="flex flex-col w-full max-w-2xl h-[80vh] bg-[#121212] rounded-t-xl border-t-2 border-confession-gold">
+<!-- Header -->
+<div class="flex items-center justify-between gap-4 px-6 py-4 border-b border-white/10 shrink-0">
+<button class="text-confession-red font-medium text-base hover:opacity-80 transition-opacity">Cancel</button>
+<h2 class="text-confession-gold font-bold text-lg">New Confession</h2>
+<button class="text-confession-red font-medium text-base hover:opacity-80 transition-opacity disabled:opacity-50" disabled="">Send</button>
+</div>
+<!-- Content Area -->
+<div class="flex flex-col flex-grow p-6 overflow-y-auto">
+<label class="flex flex-col flex-grow">
+<textarea class="form-input flex w-full flex-grow resize-none rounded-lg border border-confession-gold bg-transparent p-4 text-white placeholder:text-gray-500 focus:border-confession-gold focus:outline-0 focus:ring-0 focus:ring-offset-0 text-base leading-relaxed" placeholder="Write anything..."></textarea>
+</label>
+</div>
+<!-- Footer -->
+<div class="px-6 py-4 shrink-0">
+<p class="text-confession-gold text-xs font-normal">You will remain anonymous.</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>
