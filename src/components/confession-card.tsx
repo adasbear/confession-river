@@ -1,3 +1,5 @@
+import { HeartIcon, ChatIcon } from '@/components/ui/icons';
+
 interface ConfessionCardProps {
   confession: {
     id: string;
@@ -45,11 +47,11 @@ export function ConfessionCard({ confession, number }: ConfessionCardProps) {
         <div className="flex items-center justify-between text-xs">
           <div className="flex items-center gap-4 text-[#FFD700]">
             <div className="flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-base">favorite</span>
+              <HeartIcon />
               <span>{confession.likesCount}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-base">chat_bubble</span>
+              <ChatIcon />
               <span>{confession.commentsCount}</span>
             </div>
           </div>
