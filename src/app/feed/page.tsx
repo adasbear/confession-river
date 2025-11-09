@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getConfessions } from "@/lib/data";
 import { ConfessionCard } from "@/components/confession-card";
 import { FeedClient } from "./feed-client";
