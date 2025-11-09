@@ -5,9 +5,10 @@ import PostSheet from "@/components/post-sheet";
 
 interface FeedClientProps {
   children: ReactNode;
+  onSent?: () => void;
 }
 
-export function FeedClient({ children }: FeedClientProps) {
+export function FeedClient({ children, onSent }: FeedClientProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export function FeedClient({ children }: FeedClientProps) {
           </svg>
         </button>
       </div>
-      <PostSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <PostSheet isOpen={isOpen} onClose={() => setIsOpen(false)} onSent={onSent} />
     </div>
   );
 }

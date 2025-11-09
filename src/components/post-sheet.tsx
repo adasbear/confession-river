@@ -13,9 +13,10 @@ import { useToast } from "@/hooks/use-toast"
 interface Props {
   isOpen: boolean
   onClose: () => void
+  onSent?: () => void
 }
 
-export default function PostSheet({ isOpen, onClose }: Props) {
+export default function PostSheet({ isOpen, onClose, onSent }: Props) {
   const [body, setBody] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
@@ -43,6 +44,7 @@ export default function PostSheet({ isOpen, onClose }: Props) {
         })
         setBody("")
         onClose()
+        onSent?.()
       } else {
         toast({
           title: "Error",

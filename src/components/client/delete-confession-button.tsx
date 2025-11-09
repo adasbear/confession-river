@@ -1,14 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 
 interface DeleteConfessionButtonProps {
   confessionId: string;
+  deleteConfession: (id: string) => Promise<void>;
 }
 
-export function DeleteConfessionButton({ confessionId }: DeleteConfessionButtonProps) {
+export function DeleteConfessionButton({ confessionId, deleteConfession }: DeleteConfessionButtonProps) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState('');
+  const [isPending, startTransition] = useTransition();
 
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -27,18 +29,30 @@ export function DeleteConfessionButton({ confessionId }: DeleteConfessionButtonP
       return;
     }
 
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '/api/mod/reject';
+    // Find the row by confessionId - look for the row containing this button
+    const row = document.querySelector(`tr[data-confession-id="${confessionId}"]`) as HTMLTableRowElement | null;
     
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'id';
-    input.value = confessionId;
-    form.appendChild(input);
-    
-    document.body.appendChild(form);
-    form.submit();
+    // Optimistic delete: hide the row immediately
+    if (row) {
+      row.style.display = 'none';
+    }
+
+    setShowConfirm(false);
+    setConfirmText('');
+
+    startTransition(async () => {
+      try {
+        await deleteConfession(confessionId);
+        // Revalidation will handle the actual removal - React will re-render without this row
+        // No need to manually remove the DOM node
+      } catch (error) {
+        // Revert optimistic update on error
+        if (row) {
+          row.style.display = '';
+        }
+        console.error('Error deleting confession:', error);
+      }
+    });
   };
 
   if (showConfirm) {

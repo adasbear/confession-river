@@ -1,8 +1,9 @@
 export const dynamic = 'force-dynamic';
 
+import { revalidatePath } from 'next/cache';
 import { createClient } from '@libsql/client';
 import { drizzle } from 'drizzle-orm/libsql';
-import { desc } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import { confession } from '@/lib/schema';
 import { DeleteConfessionButton } from '@/components/client/delete-confession-button';
 
@@ -11,6 +12,13 @@ const client = createClient({
 });
 
 const db = drizzle(client);
+
+async function deleteConfession(id: string) {
+  'use server';
+  await db.delete(confession).where(eq(confession.id, id));
+  revalidatePath('/mod');
+  revalidatePath('/feed');
+}
 
 async function getAllConfessions() {
   const confessions = await db
@@ -68,7 +76,7 @@ export default async function ModPage({ searchParams }: ModPageProps) {
             </thead>
             <tbody>
               {confessions.map((confession, index) => (
-                <tr key={confession.id} className="border-b border-[#FFD700]/50 bg-[#121212]">
+                <tr key={confession.id} data-confession-id={confession.id} className="border-b border-[#FFD700]/50 bg-[#121212]">
                   <td className="border-r border-[#FFD700]/50 px-4 py-3 text-sm text-white">
                     {String(index + 1).padStart(4, '0')}
                   </td>
@@ -79,7 +87,7 @@ export default async function ModPage({ searchParams }: ModPageProps) {
                     {formatDate(confession.createdAt)}
                   </td>
                   <td className="px-4 py-3">
-                    <DeleteConfessionButton confessionId={confession.id} />
+                    <DeleteConfessionButton confessionId={confession.id} deleteConfession={deleteConfession} />
                   </td>
                 </tr>
               ))}
