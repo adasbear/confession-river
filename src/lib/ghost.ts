@@ -43,7 +43,6 @@ export async function rateLimit(userId: string): Promise<boolean> {
     .where(
       and(
         eq(confession.userId, userId),
-        eq(confession.approved, 0),
         gte(confession.createdAt, twentyFourHoursAgo)
       )
     );
